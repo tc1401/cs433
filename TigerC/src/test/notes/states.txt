@@ -1,0 +1,2370 @@
+Warning : *** Shift/Reduce conflict found in state #50
+  between one_or_more_fn_decls ::= decl_fn (*) 
+  and     decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ exp 
+  and     decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN EQ exp 
+  under symbol FUNCTION
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #117
+  between exp ::= IF exp THEN exp (*) 
+  and     exp ::= IF exp THEN exp (*) ELSE exp 
+  under symbol ELSE
+  Resolved in favor of shifting.
+
+Warning : *** Shift/Reduce conflict found in state #45
+  between one_or_more_ty_decls ::= decl_ty (*) 
+  and     decl_ty ::= (*) TYPE ID EQ type 
+  under symbol TYPE
+  Resolved in favor of shifting.
+
+===== Viable Prefix Recognizer =====
+START lalr_state [0]: {
+  [exp ::= (*) lvalue , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) INT , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) exp b_op exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [program ::= (*) exp , {EOF }]
+  [exp ::= (*) BREAK , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {EOF DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) STRING , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) NIL , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {EOF DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [$START ::= (*) program EOF , {EOF }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on program to state [7]
+transition on exp to state [6]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [1]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= MINUS (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [131]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [2]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= WHILE (*) exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [128]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [3]: {
+  [exp ::= INT (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [4]: {
+  [exp ::= FOR (*) ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on ID to state [121]
+
+-------------------
+lalr_state [5]: {
+  [exp ::= NIL (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [6]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [program ::= exp (*) , {EOF }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [7]: {
+  [$START ::= program (*) EOF , {EOF }]
+}
+transition on EOF to state [120]
+
+-------------------
+lalr_state [8]: {
+  [exp ::= STRING (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [9]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= IF (*) exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= IF (*) exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [115]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [10]: {
+  [exp ::= ID (*) LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= ID (*) LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= ID (*) LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= ID (*) LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= ID (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on LPAREN to state [95]
+transition on LBRACK to state [94]
+transition on LBRACE to state [93]
+
+-------------------
+lalr_state [11]: {
+  [decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+  [one_or_more_ty_decls ::= (*) decl_ty , {IN FUNCTION VAR TYPE }]
+  [decl_var ::= (*) VAR ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+  [decl ::= (*) decl_var , {IN FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= (*) decl_fn one_or_more_fn_decls , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN EQ exp , {IN FUNCTION VAR TYPE }]
+  [decl_ty ::= (*) TYPE ID EQ type , {IN FUNCTION VAR TYPE }]
+  [decl ::= (*) one_or_more_fn_decls , {IN FUNCTION VAR TYPE }]
+  [decl_list ::= (*) decl decl_list , {IN }]
+  [exp ::= LET (*) decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= (*) decl_fn , {IN FUNCTION VAR TYPE }]
+  [one_or_more_ty_decls ::= (*) decl_ty one_or_more_ty_decls , {IN FUNCTION VAR TYPE }]
+  [decl_var ::= (*) VAR ID COLON ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+  [decl ::= (*) one_or_more_ty_decls , {IN FUNCTION VAR TYPE }]
+  [decl_list ::= (*) decl , {IN }]
+}
+transition on one_or_more_fn_decls to state [52]
+transition on FUNCTION to state [51]
+transition on decl_fn to state [50]
+transition on decl to state [49]
+transition on TYPE to state [48]
+transition on VAR to state [47]
+transition on one_or_more_ty_decls to state [46]
+transition on decl_ty to state [45]
+transition on decl_list to state [44]
+transition on decl_var to state [43]
+
+-------------------
+lalr_state [12]: {
+  [exp ::= (*) lvalue , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {SEMICOLON RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp_seq ::= (*) , {RPAREN }]
+  [exp ::= (*) INT , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) exp b_op exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {SEMICOLON RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [seq_one_or_more ::= (*) exp SEMICOLON seq_one_or_more , {RPAREN }]
+  [exp ::= (*) BREAK , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= LPAREN (*) exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {SEMICOLON RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp_seq ::= (*) seq_one_or_more , {RPAREN }]
+  [exp ::= (*) STRING , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {SEMICOLON RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) NIL , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {SEMICOLON RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [seq_one_or_more ::= (*) exp , {RPAREN }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [39]
+transition on seq_one_or_more to state [38]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on exp_seq to state [37]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [13]: {
+  [lval_not_id ::= lval_not_id (*) LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= lval_not_id (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on LBRACK to state [34]
+
+-------------------
+lalr_state [14]: {
+  [exp ::= lvalue (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= lvalue (*) ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= lvalue (*) DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on ASSIGN to state [17]
+transition on DOT to state [16]
+
+-------------------
+lalr_state [15]: {
+  [exp ::= BREAK (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [16]: {
+  [lval_not_id ::= lvalue DOT (*) ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on ID to state [33]
+
+-------------------
+lalr_state [17]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= lvalue ASSIGN (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [18]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [18]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= lvalue ASSIGN exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [19]: {
+  [b_op ::= AND (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [20]: {
+  [b_op ::= MINUS (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [21]: {
+  [b_op ::= DIVIDE (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [22]: {
+  [b_op ::= GE (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [23]: {
+  [b_op ::= NEQ (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [24]: {
+  [b_op ::= EQ (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [25]: {
+  [b_op ::= PLUS (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [26]: {
+  [b_op ::= LE (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [27]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= exp b_op (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [32]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [28]: {
+  [b_op ::= GT (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [29]: {
+  [b_op ::= TIMES (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [30]: {
+  [b_op ::= LT (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [31]: {
+  [b_op ::= OR (*) , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+
+-------------------
+lalr_state [32]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp b_op exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [33]: {
+  [lval_not_id ::= lvalue DOT ID (*) , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [34]: {
+  [exp ::= (*) lvalue , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= lval_not_id LBRACK (*) exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) INT , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) exp b_op exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) BREAK , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) STRING , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) NIL , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [35]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [35]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [lval_not_id ::= lval_not_id LBRACK exp (*) RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on RBRACK to state [36]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [36]: {
+  [lval_not_id ::= lval_not_id LBRACK exp RBRACK (*) , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [37]: {
+  [exp ::= LPAREN exp_seq (*) RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on RPAREN to state [42]
+
+-------------------
+lalr_state [38]: {
+  [exp_seq ::= seq_one_or_more (*) , {RPAREN END }]
+}
+
+-------------------
+lalr_state [39]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [seq_one_or_more ::= exp (*) , {RPAREN END }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [seq_one_or_more ::= exp (*) SEMICOLON seq_one_or_more , {RPAREN END }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on SEMICOLON to state [40]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [40]: {
+  [exp ::= (*) lvalue , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {SEMICOLON RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [exp ::= (*) INT , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) exp b_op exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lval_not_id ::= (*) lvalue DOT ID , {SEMICOLON RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [seq_one_or_more ::= exp SEMICOLON (*) seq_one_or_more , {RPAREN END }]
+  [seq_one_or_more ::= (*) exp SEMICOLON seq_one_or_more , {RPAREN END }]
+  [exp ::= (*) BREAK , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) WHILE exp DO exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lvalue ::= (*) ID , {SEMICOLON RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [exp ::= (*) STRING , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) lvalue ASSIGN exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) IF exp THEN exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {SEMICOLON RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [exp ::= (*) NIL , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) MINUS exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {SEMICOLON RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lvalue ::= (*) lval_not_id , {SEMICOLON RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [seq_one_or_more ::= (*) exp , {RPAREN END }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [39]
+transition on seq_one_or_more to state [41]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [41]: {
+  [seq_one_or_more ::= exp SEMICOLON seq_one_or_more (*) , {RPAREN END }]
+}
+
+-------------------
+lalr_state [42]: {
+  [exp ::= LPAREN exp_seq RPAREN (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [43]: {
+  [decl ::= decl_var (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [44]: {
+  [exp ::= LET decl_list (*) IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on IN to state [90]
+
+-------------------
+lalr_state [45]: {
+  [one_or_more_ty_decls ::= decl_ty (*) , {IN FUNCTION VAR TYPE }]
+  [one_or_more_ty_decls ::= (*) decl_ty , {IN FUNCTION VAR TYPE }]
+  [decl_ty ::= (*) TYPE ID EQ type , {IN FUNCTION VAR TYPE }]
+  [one_or_more_ty_decls ::= decl_ty (*) one_or_more_ty_decls , {IN FUNCTION VAR TYPE }]
+  [one_or_more_ty_decls ::= (*) decl_ty one_or_more_ty_decls , {IN FUNCTION VAR TYPE }]
+}
+transition on TYPE to state [48]
+transition on decl_ty to state [45]
+transition on one_or_more_ty_decls to state [89]
+
+-------------------
+lalr_state [46]: {
+  [decl ::= one_or_more_ty_decls (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [47]: {
+  [decl_var ::= VAR (*) ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+  [decl_var ::= VAR (*) ID COLON ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+}
+transition on ID to state [82]
+
+-------------------
+lalr_state [48]: {
+  [decl_ty ::= TYPE (*) ID EQ type , {IN FUNCTION VAR TYPE }]
+}
+transition on ID to state [72]
+
+-------------------
+lalr_state [49]: {
+  [decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ exp , {IN FUNCTION }]
+  [one_or_more_ty_decls ::= (*) decl_ty , {IN FUNCTION VAR TYPE }]
+  [decl_var ::= (*) VAR ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+  [decl ::= (*) decl_var , {IN FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= (*) decl_fn one_or_more_fn_decls , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN EQ exp , {IN FUNCTION }]
+  [decl_ty ::= (*) TYPE ID EQ type , {IN TYPE }]
+  [decl_list ::= decl (*) decl_list , {IN }]
+  [decl ::= (*) one_or_more_fn_decls , {IN FUNCTION VAR TYPE }]
+  [decl_list ::= (*) decl decl_list , {IN }]
+  [one_or_more_fn_decls ::= (*) decl_fn , {IN FUNCTION VAR TYPE }]
+  [one_or_more_ty_decls ::= (*) decl_ty one_or_more_ty_decls , {IN FUNCTION VAR TYPE }]
+  [decl_var ::= (*) VAR ID COLON ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+  [decl_list ::= decl (*) , {IN }]
+  [decl ::= (*) one_or_more_ty_decls , {IN FUNCTION VAR TYPE }]
+  [decl_list ::= (*) decl , {IN }]
+}
+transition on one_or_more_fn_decls to state [52]
+transition on FUNCTION to state [51]
+transition on decl_fn to state [50]
+transition on decl to state [49]
+transition on TYPE to state [48]
+transition on VAR to state [47]
+transition on one_or_more_ty_decls to state [46]
+transition on decl_ty to state [45]
+transition on decl_list to state [71]
+transition on decl_var to state [43]
+
+-------------------
+lalr_state [50]: {
+  [decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= decl_fn (*) one_or_more_fn_decls , {IN FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= (*) decl_fn one_or_more_fn_decls , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN EQ exp , {IN FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= decl_fn (*) , {IN FUNCTION VAR TYPE }]
+  [one_or_more_fn_decls ::= (*) decl_fn , {IN FUNCTION VAR TYPE }]
+}
+transition on FUNCTION to state [51]
+transition on one_or_more_fn_decls to state [70]
+transition on decl_fn to state [50]
+
+-------------------
+lalr_state [51]: {
+  [decl_fn ::= FUNCTION (*) ID LPAREN tyfield_list RPAREN EQ exp , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= FUNCTION (*) ID LPAREN tyfield_list RPAREN COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+}
+transition on ID to state [53]
+
+-------------------
+lalr_state [52]: {
+  [decl ::= one_or_more_fn_decls (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [53]: {
+  [decl_fn ::= FUNCTION ID (*) LPAREN tyfield_list RPAREN EQ exp , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= FUNCTION ID (*) LPAREN tyfield_list RPAREN COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+}
+transition on LPAREN to state [54]
+
+-------------------
+lalr_state [54]: {
+  [decl_fn ::= FUNCTION ID LPAREN (*) tyfield_list RPAREN EQ exp , {IN FUNCTION VAR TYPE }]
+  [tyfield_list ::= (*) tyfields_one_or_more , {RPAREN }]
+  [tyfields_one_or_more ::= (*) tyfield COMMA tyfields_one_or_more , {RPAREN }]
+  [tyfield_list ::= (*) , {RPAREN }]
+  [decl_fn ::= FUNCTION ID LPAREN (*) tyfield_list RPAREN COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+  [tyfields_one_or_more ::= (*) tyfield , {RPAREN }]
+  [tyfield ::= (*) ID COLON ID , {COMMA RPAREN }]
+}
+transition on tyfields_one_or_more to state [58]
+transition on tyfield_list to state [57]
+transition on tyfield to state [56]
+transition on ID to state [55]
+
+-------------------
+lalr_state [55]: {
+  [tyfield ::= ID (*) COLON ID , {COMMA RPAREN RBRACE }]
+}
+transition on COLON to state [68]
+
+-------------------
+lalr_state [56]: {
+  [tyfields_one_or_more ::= tyfield (*) COMMA tyfields_one_or_more , {RPAREN RBRACE }]
+  [tyfields_one_or_more ::= tyfield (*) , {RPAREN RBRACE }]
+}
+transition on COMMA to state [66]
+
+-------------------
+lalr_state [57]: {
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list (*) RPAREN EQ exp , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list (*) RPAREN COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+}
+transition on RPAREN to state [59]
+
+-------------------
+lalr_state [58]: {
+  [tyfield_list ::= tyfields_one_or_more (*) , {RPAREN RBRACE }]
+}
+
+-------------------
+lalr_state [59]: {
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN (*) COLON ID EQ exp , {IN FUNCTION VAR TYPE }]
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN (*) EQ exp , {IN FUNCTION VAR TYPE }]
+}
+transition on COLON to state [61]
+transition on EQ to state [60]
+
+-------------------
+lalr_state [60]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN EQ (*) exp , {IN FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [65]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [61]: {
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN COLON (*) ID EQ exp , {IN FUNCTION VAR TYPE }]
+}
+transition on ID to state [62]
+
+-------------------
+lalr_state [62]: {
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN COLON ID (*) EQ exp , {IN FUNCTION VAR TYPE }]
+}
+transition on EQ to state [63]
+
+-------------------
+lalr_state [63]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ (*) exp , {IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [64]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [64]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ exp (*) , {IN FUNCTION VAR TYPE }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [65]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [decl_fn ::= FUNCTION ID LPAREN tyfield_list RPAREN EQ exp (*) , {IN FUNCTION VAR TYPE }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [66]: {
+  [tyfields_one_or_more ::= tyfield COMMA (*) tyfields_one_or_more , {RPAREN RBRACE }]
+  [tyfields_one_or_more ::= (*) tyfield COMMA tyfields_one_or_more , {RPAREN RBRACE }]
+  [tyfields_one_or_more ::= (*) tyfield , {RPAREN RBRACE }]
+  [tyfield ::= (*) ID COLON ID , {COMMA RPAREN RBRACE }]
+}
+transition on tyfields_one_or_more to state [67]
+transition on tyfield to state [56]
+transition on ID to state [55]
+
+-------------------
+lalr_state [67]: {
+  [tyfields_one_or_more ::= tyfield COMMA tyfields_one_or_more (*) , {RPAREN RBRACE }]
+}
+
+-------------------
+lalr_state [68]: {
+  [tyfield ::= ID COLON (*) ID , {COMMA RPAREN RBRACE }]
+}
+transition on ID to state [69]
+
+-------------------
+lalr_state [69]: {
+  [tyfield ::= ID COLON ID (*) , {COMMA RPAREN RBRACE }]
+}
+
+-------------------
+lalr_state [70]: {
+  [one_or_more_fn_decls ::= decl_fn one_or_more_fn_decls (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [71]: {
+  [decl_list ::= decl decl_list (*) , {IN }]
+}
+
+-------------------
+lalr_state [72]: {
+  [decl_ty ::= TYPE ID (*) EQ type , {IN FUNCTION VAR TYPE }]
+}
+transition on EQ to state [73]
+
+-------------------
+lalr_state [73]: {
+  [type ::= (*) LBRACE tyfield_list RBRACE , {IN FUNCTION VAR TYPE }]
+  [decl_ty ::= TYPE ID EQ (*) type , {IN FUNCTION VAR TYPE }]
+  [type ::= (*) ID , {IN FUNCTION VAR TYPE }]
+  [type ::= (*) ARRAY OF ID , {IN FUNCTION VAR TYPE }]
+}
+transition on ARRAY to state [77]
+transition on type to state [76]
+transition on LBRACE to state [75]
+transition on ID to state [74]
+
+-------------------
+lalr_state [74]: {
+  [type ::= ID (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [75]: {
+  [type ::= LBRACE (*) tyfield_list RBRACE , {IN FUNCTION VAR TYPE }]
+  [tyfield_list ::= (*) tyfields_one_or_more , {RBRACE }]
+  [tyfields_one_or_more ::= (*) tyfield COMMA tyfields_one_or_more , {RBRACE }]
+  [tyfield_list ::= (*) , {RBRACE }]
+  [tyfields_one_or_more ::= (*) tyfield , {RBRACE }]
+  [tyfield ::= (*) ID COLON ID , {COMMA RBRACE }]
+}
+transition on tyfields_one_or_more to state [58]
+transition on tyfield_list to state [80]
+transition on tyfield to state [56]
+transition on ID to state [55]
+
+-------------------
+lalr_state [76]: {
+  [decl_ty ::= TYPE ID EQ type (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [77]: {
+  [type ::= ARRAY (*) OF ID , {IN FUNCTION VAR TYPE }]
+}
+transition on OF to state [78]
+
+-------------------
+lalr_state [78]: {
+  [type ::= ARRAY OF (*) ID , {IN FUNCTION VAR TYPE }]
+}
+transition on ID to state [79]
+
+-------------------
+lalr_state [79]: {
+  [type ::= ARRAY OF ID (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [80]: {
+  [type ::= LBRACE tyfield_list (*) RBRACE , {IN FUNCTION VAR TYPE }]
+}
+transition on RBRACE to state [81]
+
+-------------------
+lalr_state [81]: {
+  [type ::= LBRACE tyfield_list RBRACE (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [82]: {
+  [decl_var ::= VAR ID (*) ASSIGN exp , {IN FUNCTION VAR TYPE }]
+  [decl_var ::= VAR ID (*) COLON ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+}
+transition on ASSIGN to state [84]
+transition on COLON to state [83]
+
+-------------------
+lalr_state [83]: {
+  [decl_var ::= VAR ID COLON (*) ID ASSIGN exp , {IN FUNCTION VAR TYPE }]
+}
+transition on ID to state [86]
+
+-------------------
+lalr_state [84]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [decl_var ::= VAR ID ASSIGN (*) exp , {IN FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [85]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [85]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [decl_var ::= VAR ID ASSIGN exp (*) , {IN FUNCTION VAR TYPE }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [86]: {
+  [decl_var ::= VAR ID COLON ID (*) ASSIGN exp , {IN FUNCTION VAR TYPE }]
+}
+transition on ASSIGN to state [87]
+
+-------------------
+lalr_state [87]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [decl_var ::= VAR ID COLON ID ASSIGN (*) exp , {IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN IN FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [88]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [88]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR IN FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [decl_var ::= VAR ID COLON ID ASSIGN exp (*) , {IN FUNCTION VAR TYPE }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [89]: {
+  [one_or_more_ty_decls ::= decl_ty one_or_more_ty_decls (*) , {IN FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [90]: {
+  [exp ::= (*) lvalue , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {SEMICOLON LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [exp_seq ::= (*) , {END }]
+  [exp ::= (*) INT , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= LET decl_list IN (*) exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lval_not_id ::= (*) lvalue DOT ID , {SEMICOLON LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [seq_one_or_more ::= (*) exp SEMICOLON seq_one_or_more , {END }]
+  [exp ::= (*) BREAK , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) WHILE exp DO exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lvalue ::= (*) ID , {SEMICOLON DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [exp_seq ::= (*) seq_one_or_more , {END }]
+  [exp ::= (*) STRING , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) lvalue ASSIGN exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) IF exp THEN exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {SEMICOLON LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [exp ::= (*) NIL , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) MINUS exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {SEMICOLON PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR END }]
+  [lvalue ::= (*) lval_not_id , {SEMICOLON DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN END }]
+  [seq_one_or_more ::= (*) exp , {END }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [39]
+transition on seq_one_or_more to state [38]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on exp_seq to state [91]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [91]: {
+  [exp ::= LET decl_list IN exp_seq (*) END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on END to state [92]
+
+-------------------
+lalr_state [92]: {
+  [exp ::= LET decl_list IN exp_seq END (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [93]: {
+  [field_exp ::= (*) ID EQ exp , {COMMA RBRACE }]
+  [exp ::= ID LBRACE (*) field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [fieldexps_one_or_more ::= (*) field_exp COMMA fieldexps_one_or_more , {RBRACE }]
+  [field_exp_list ::= (*) fieldexps_one_or_more , {RBRACE }]
+  [fieldexps_one_or_more ::= (*) field_exp , {RBRACE }]
+  [field_exp_list ::= (*) , {RBRACE }]
+}
+transition on field_exp to state [109]
+transition on field_exp_list to state [108]
+transition on fieldexps_one_or_more to state [107]
+transition on ID to state [106]
+
+-------------------
+lalr_state [94]: {
+  [exp ::= (*) lvalue , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) INT , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= ID LBRACK (*) exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) BREAK , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) STRING , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= ID LBRACK (*) exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) NIL , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {RBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [102]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [95]: {
+  [exp ::= (*) lvalue , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {COMMA RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) INT , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) exp b_op exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {COMMA RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [args_one_or_more ::= (*) exp , {RPAREN }]
+  [exp ::= (*) BREAK , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {COMMA RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [arg_list ::= (*) , {RPAREN }]
+  [exp ::= (*) STRING , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {COMMA RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [args_one_or_more ::= (*) exp COMMA args_one_or_more , {RPAREN }]
+  [exp ::= (*) NIL , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {COMMA RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [arg_list ::= (*) args_one_or_more , {RPAREN }]
+  [exp ::= ID LPAREN (*) arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on arg_list to state [98]
+transition on exp to state [97]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+transition on args_one_or_more to state [96]
+
+-------------------
+lalr_state [96]: {
+  [arg_list ::= args_one_or_more (*) , {RPAREN }]
+}
+
+-------------------
+lalr_state [97]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [args_one_or_more ::= exp (*) COMMA args_one_or_more , {RPAREN }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [args_one_or_more ::= exp (*) , {RPAREN }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on COMMA to state [100]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [98]: {
+  [exp ::= ID LPAREN arg_list (*) RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on RPAREN to state [99]
+
+-------------------
+lalr_state [99]: {
+  [exp ::= ID LPAREN arg_list RPAREN (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [100]: {
+  [exp ::= (*) lvalue , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {COMMA RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) INT , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) exp b_op exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {COMMA RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [args_one_or_more ::= (*) exp , {RPAREN }]
+  [exp ::= (*) BREAK , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {COMMA RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) STRING , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [args_one_or_more ::= exp COMMA (*) args_one_or_more , {RPAREN }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {COMMA RPAREN LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [args_one_or_more ::= (*) exp COMMA args_one_or_more , {RPAREN }]
+  [exp ::= (*) NIL , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {COMMA RPAREN PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {COMMA RPAREN DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [97]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on args_one_or_more to state [101]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [101]: {
+  [args_one_or_more ::= exp COMMA args_one_or_more (*) , {RPAREN }]
+}
+
+-------------------
+lalr_state [102]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [lval_not_id ::= ID LBRACK exp (*) RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= exp (*) b_op exp , {RBRACK PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= ID LBRACK exp (*) RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on RBRACK to state [103]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [103]: {
+  [lval_not_id ::= ID LBRACK exp RBRACK (*) , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= ID LBRACK exp RBRACK (*) OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on OF to state [104]
+
+-------------------
+lalr_state [104]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= ID LBRACK exp RBRACK OF (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [105]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [105]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= ID LBRACK exp RBRACK OF exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [106]: {
+  [field_exp ::= ID (*) EQ exp , {COMMA RBRACE }]
+}
+transition on EQ to state [113]
+
+-------------------
+lalr_state [107]: {
+  [field_exp_list ::= fieldexps_one_or_more (*) , {RBRACE }]
+}
+
+-------------------
+lalr_state [108]: {
+  [exp ::= ID LBRACE field_exp_list (*) RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on RBRACE to state [112]
+
+-------------------
+lalr_state [109]: {
+  [fieldexps_one_or_more ::= field_exp (*) COMMA fieldexps_one_or_more , {RBRACE }]
+  [fieldexps_one_or_more ::= field_exp (*) , {RBRACE }]
+}
+transition on COMMA to state [110]
+
+-------------------
+lalr_state [110]: {
+  [field_exp ::= (*) ID EQ exp , {COMMA RBRACE }]
+  [fieldexps_one_or_more ::= field_exp COMMA (*) fieldexps_one_or_more , {RBRACE }]
+  [fieldexps_one_or_more ::= (*) field_exp COMMA fieldexps_one_or_more , {RBRACE }]
+  [fieldexps_one_or_more ::= (*) field_exp , {RBRACE }]
+}
+transition on field_exp to state [109]
+transition on fieldexps_one_or_more to state [111]
+transition on ID to state [106]
+
+-------------------
+lalr_state [111]: {
+  [fieldexps_one_or_more ::= field_exp COMMA fieldexps_one_or_more (*) , {RBRACE }]
+}
+
+-------------------
+lalr_state [112]: {
+  [exp ::= ID LBRACE field_exp_list RBRACE (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+
+-------------------
+lalr_state [113]: {
+  [exp ::= (*) lvalue , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {COMMA LBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) INT , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) exp b_op exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) lvalue DOT ID , {COMMA LBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) BREAK , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) WHILE exp DO exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) ID , {COMMA RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [field_exp ::= ID EQ (*) exp , {COMMA RBRACE }]
+  [exp ::= (*) STRING , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) lvalue ASSIGN exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) IF exp THEN exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {COMMA LBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+  [exp ::= (*) NIL , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) MINUS exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [lvalue ::= (*) lval_not_id , {COMMA RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [114]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [114]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {COMMA RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [field_exp ::= ID EQ exp (*) , {COMMA RBRACE }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [115]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= IF exp (*) THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= IF exp (*) THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on THEN to state [116]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [116]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= IF exp THEN (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= IF exp THEN (*) exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [117]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [117]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= IF exp THEN exp (*) ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= IF exp THEN exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on ELSE to state [118]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [118]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= IF exp THEN exp ELSE (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [119]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [119]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= IF exp THEN exp ELSE exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [120]: {
+  [$START ::= program EOF (*) , {EOF }]
+}
+
+-------------------
+lalr_state [121]: {
+  [exp ::= FOR ID (*) ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on ASSIGN to state [122]
+
+-------------------
+lalr_state [122]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN TO }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN TO }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN TO }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN TO }]
+  [exp ::= FOR ID ASSIGN (*) exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN TO }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [123]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [123]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR TO }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= FOR ID ASSIGN exp (*) TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on TO to state [124]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [124]: {
+  [exp ::= (*) lvalue , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) INT , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) exp b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lval_not_id ::= (*) lvalue DOT ID , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) BREAK , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) WHILE exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lvalue ::= (*) ID , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= (*) STRING , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) lvalue ASSIGN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) IF exp THEN exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {LBRACK DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+  [exp ::= FOR ID ASSIGN exp TO (*) exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) MINUS exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [lvalue ::= (*) lval_not_id , {DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN DO }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [125]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [125]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= FOR ID ASSIGN exp TO exp (*) DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on DO to state [126]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [126]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= FOR ID ASSIGN exp TO exp DO (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [127]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [127]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= FOR ID ASSIGN exp TO exp DO exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [128]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR DO }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= WHILE exp (*) DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on DO to state [129]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [129]: {
+  [exp ::= (*) lvalue , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LPAREN arg_list RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp ELSE exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lval_not_id LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) INT , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) exp b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACK exp RBRACK OF exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LET decl_list IN exp_seq END , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) lvalue DOT ID , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= WHILE exp DO (*) exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) BREAK , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) LPAREN exp_seq RPAREN , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) WHILE exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) ID , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) STRING , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) lvalue ASSIGN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) IF exp THEN exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lval_not_id ::= (*) ID LBRACK exp RBRACK , {EOF COMMA SEMICOLON RPAREN LBRACK RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) NIL , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) MINUS exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) ID LBRACE field_exp_list RBRACE , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= (*) FOR ID ASSIGN exp TO exp DO exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [lvalue ::= (*) lval_not_id , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE DOT PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR ASSIGN THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+}
+transition on BREAK to state [15]
+transition on lvalue to state [14]
+transition on lval_not_id to state [13]
+transition on LPAREN to state [12]
+transition on LET to state [11]
+transition on ID to state [10]
+transition on IF to state [9]
+transition on STRING to state [8]
+transition on exp to state [130]
+transition on NIL to state [5]
+transition on FOR to state [4]
+transition on INT to state [3]
+transition on WHILE to state [2]
+transition on MINUS to state [1]
+
+-------------------
+lalr_state [130]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [exp ::= WHILE exp DO exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+lalr_state [131]: {
+  [b_op ::= (*) MINUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= exp (*) b_op exp , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) GE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) DIVIDE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) PLUS , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [exp ::= MINUS exp (*) , {EOF COMMA SEMICOLON RPAREN RBRACK RBRACE PLUS MINUS TIMES DIVIDE EQ NEQ LT LE GT GE AND OR THEN ELSE TO DO IN END FUNCTION VAR TYPE }]
+  [b_op ::= (*) OR , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) GT , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) NEQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) TIMES , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) AND , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) LE , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+  [b_op ::= (*) EQ , {ID STRING INT LPAREN MINUS IF WHILE FOR LET BREAK NIL }]
+}
+transition on OR to state [31]
+transition on LT to state [30]
+transition on TIMES to state [29]
+transition on GT to state [28]
+transition on b_op to state [27]
+transition on LE to state [26]
+transition on PLUS to state [25]
+transition on EQ to state [24]
+transition on NEQ to state [23]
+transition on GE to state [22]
+transition on DIVIDE to state [21]
+transition on MINUS to state [20]
+transition on AND to state [19]
+
+-------------------
+------- CUP v0.11a beta 20060608 Parser Generation Summary -------
+  0 errors and 3 warnings
+  46 terminals, 23 non-terminals, and 71 productions declared, 
+  producing 132 unique parse states.
+  0 terminals declared but not used.
+  0 non-terminals declared but not used.
+  0 productions never reduced.
+  3 conflicts detected (3 expected).
+  Code written to "TigerParse.java", and "TigerSyms.java".
+---------------------------------------------------- (v0.11a beta 20060608)

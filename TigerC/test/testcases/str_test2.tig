@@ -1,0 +1,8 @@
+/* a string declaration */
+
+let
+	var s := "The quick brown fox \
+	          \ jumped over the lazy dog."
+in
+	s
+end

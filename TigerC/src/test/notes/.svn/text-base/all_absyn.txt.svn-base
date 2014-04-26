@@ -1,0 +1,1249 @@
+********** test01.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          arrtype,
+          TyArray(int)
+      ]),
+    DeclVar(arr1,
+      arrtype,
+      ArrayExp(
+        arrtype,
+        ExpInt(10),
+        ExpInt(0)))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(arr1))
+         ]))
+
+********** test02.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          myint,
+          TyName(int),
+          arrtype,
+          TyArray(myint)
+      ]),
+    DeclVar(arr1,
+      arrtype,
+      ArrayExp(
+        arrtype,
+        ExpInt(10),
+        ExpInt(0)))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(arr1))
+         ]))
+
+********** test03.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              age:int
+             ])
+      ]),
+    DeclVar(rec1,
+      rectype,
+      ExpRecord(rectype,
+        [List of Record Fields:
+          (name:
+            ExpString(Nobody)),
+          (age:
+            ExpInt(1000))
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpAssign(
+        VarField(
+          VarSimple(rec1),
+          name),
+        ExpString(Somebody)),
+      ExpVar(
+        VarSimple(rec1))
+         ]))
+
+********** test04.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        nfactor,
+          [List of Fields:
+            n:int
+           ],
+          int,
+          ExpIfElse(
+            ExpOp(
+              EQ,
+              ExpVar(
+                VarSimple(n)),
+                  ExpInt(0)),
+                ExpInt(1),
+                ExpOp(
+                  MUL,
+                  ExpVar(
+                    VarSimple(n)),
+                      ExpCall(
+                        nfactor,
+                        [List of Exps:
+                          ExpOp(
+                            MIN,
+                            ExpVar(
+                              VarSimple(n)),
+                                ExpInt(1))
+                             ])))
+                   ])
+               ],
+              ExpSeq(
+                [List of Exps:
+                  ExpCall(
+                    nfactor,
+                    [List of Exps:
+                      ExpInt(10)
+                     ])
+                 ]))
+
+********** test05.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          intlist,
+          TyRecord(
+            [List of Fields:
+              hd:int,
+              tl:intlist
+             ]),
+          tree,
+          TyRecord(
+            [List of Fields:
+              key:int,
+              children:treelist
+             ]),
+          treelist,
+          TyRecord(
+            [List of Fields:
+              hd:tree,
+              tl:treelist
+             ])
+      ]),
+    DeclVar(lis,
+      intlist,
+      ExpRecord(intlist,
+        [List of Record Fields:
+          (hd:
+            ExpInt(0)),
+          (tl:
+            ExpNil())
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(lis))
+         ]))
+
+********** test06.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        do_nothing1,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          resultTy == null,
+          ExpCall(
+            do_nothing2,
+            [List of Exps:
+              ExpOp(
+                PLUS,
+                ExpVar(
+                  VarSimple(a)),
+                    ExpInt(1))
+                 ]),
+            do_nothing2,
+              [List of Fields:
+                d:int
+               ],
+              resultTy == null,
+              ExpCall(
+                do_nothing1,
+                [List of Exps:
+                  ExpVar(
+                    VarSimple(d)),
+                      ExpString(str)
+                     ])
+               ])
+           ],
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing1,
+                [List of Exps:
+                  ExpInt(0),
+                  ExpString(str2)
+                 ])
+             ]))
+
+********** test07.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        do_nothing1,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          int,
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing2,
+                [List of Exps:
+                  ExpOp(
+                    PLUS,
+                    ExpVar(
+                      VarSimple(a)),
+                        ExpInt(1))
+                     ]),
+                  ExpInt(0)
+                 ]),
+            do_nothing2,
+              [List of Fields:
+                d:int
+               ],
+              string,
+              ExpSeq(
+                [List of Exps:
+                  ExpCall(
+                    do_nothing1,
+                    [List of Exps:
+                      ExpVar(
+                        VarSimple(d)),
+                          ExpString(str)
+                         ]),
+                      ExpString( )
+                     ])
+               ])
+           ],
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing1,
+                [List of Exps:
+                  ExpInt(0),
+                  ExpString(str2)
+                 ])
+             ]))
+
+********** test08.absyn *****************
+
+ExpIfElse(
+  ExpSeq(
+    [List of Exps:
+      ExpOp(
+        GT,
+        ExpInt(10),
+        ExpInt(20))
+     ]),
+  ExpInt(30),
+  ExpInt(40))
+
+********** test09.absyn *****************
+
+ExpIfElse(
+  ExpSeq(
+    [List of Exps:
+      ExpOp(
+        GT,
+        ExpInt(5),
+        ExpInt(4))
+     ]),
+  ExpInt(13),
+  ExpString( ))
+
+********** test10.absyn *****************
+
+ExpWhile(
+  ExpSeq(
+    [List of Exps:
+      ExpOp(
+        GT,
+        ExpInt(10),
+        ExpInt(5))
+     ]),
+  ExpOp(
+    PLUS,
+    ExpInt(5),
+    ExpInt(6)))
+
+********** test11.absyn *****************
+
+ExpFor(
+  i,
+  ExpInt(10),
+  ExpString( ),
+  ExpAssign(
+    VarSimple(i),
+    ExpOp(
+      MIN,
+      ExpVar(
+        VarSimple(i)),
+          ExpInt(1))))
+
+********** test12.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(a,
+      ExpInt(0))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpFor(
+        i,
+        ExpInt(0),
+        ExpInt(100),
+        ExpSeq(
+          [List of Exps:
+            ExpAssign(
+              VarSimple(a),
+              ExpOp(
+                PLUS,
+                ExpVar(
+                  VarSimple(a)),
+                    ExpInt(1))),
+                ExpSeq(
+                  [List of Exps:
+                   ])
+               ]))
+         ]))
+
+********** test13.absyn *****************
+
+ExpOp(
+  GT,
+  ExpInt(3),
+  ExpString(df))
+
+********** test14.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          arrtype,
+          TyArray(int),
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(rec,
+      ExpRecord(rectype,
+        [List of Record Fields:
+          (name:
+            ExpString(aname)),
+          (id:
+            ExpInt(0))
+         ])),
+    DeclVar(arr,
+      ArrayExp(
+        arrtype,
+        ExpInt(3),
+        ExpInt(0)))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpIfElse(
+        ExpOp(
+          NE,
+          ExpVar(
+            VarSimple(rec)),
+              ExpVar(
+                VarSimple(arr))),
+                ExpInt(3),
+                ExpInt(4))
+             ]))
+
+********** test15.absyn *****************
+
+ExpIf(
+  ExpInt(20),
+  ExpInt(3))
+
+********** test16.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          a,
+          TyName(c),
+          b,
+          TyName(a),
+          c,
+          TyName(d),
+          d,
+          TyName(a)
+      ])
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpString()
+     ]))
+
+********** test17.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          tree,
+          TyRecord(
+            [List of Fields:
+              key:int,
+              children:treelist
+             ])
+      ]),
+    DeclVar(d,
+      int,
+      ExpInt(0)),
+    DeclGroupType(
+      [List of Type Decls:
+          treelist,
+          TyRecord(
+            [List of Fields:
+              hd:tree,
+              tl:treelist
+             ])
+      ])
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(d))
+         ]))
+
+********** test18.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        do_nothing1,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          int,
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing2,
+                [List of Exps:
+                  ExpOp(
+                    PLUS,
+                    ExpVar(
+                      VarSimple(a)),
+                        ExpInt(1))
+                     ]),
+                  ExpInt(0)
+                 ])
+           ]),
+        DeclVar(d,
+          ExpInt(0)),
+        DeclGroupFunction(
+          [List of Function Decls:
+            do_nothing2,
+              [List of Fields:
+                d:int
+               ],
+              string,
+              ExpSeq(
+                [List of Exps:
+                  ExpCall(
+                    do_nothing1,
+                    [List of Exps:
+                      ExpVar(
+                        VarSimple(d)),
+                          ExpString(str)
+                         ]),
+                      ExpString( )
+                     ])
+               ])
+           ],
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing1,
+                [List of Exps:
+                  ExpInt(0),
+                  ExpString(str2)
+                 ])
+             ]))
+
+********** test19.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        do_nothing1,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          int,
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing2,
+                [List of Exps:
+                  ExpOp(
+                    PLUS,
+                    ExpVar(
+                      VarSimple(a)),
+                        ExpInt(1))
+                     ]),
+                  ExpInt(0)
+                 ]),
+            do_nothing2,
+              [List of Fields:
+                d:int
+               ],
+              string,
+              ExpSeq(
+                [List of Exps:
+                  ExpCall(
+                    do_nothing1,
+                    [List of Exps:
+                      ExpVar(
+                        VarSimple(a)),
+                          ExpString(str)
+                         ]),
+                      ExpString( )
+                     ])
+               ])
+           ],
+          ExpSeq(
+            [List of Exps:
+              ExpCall(
+                do_nothing1,
+                [List of Exps:
+                  ExpInt(0),
+                  ExpString(str2)
+                 ])
+             ]))
+
+********** test20.absyn *****************
+
+ExpWhile(
+  ExpOp(
+    GT,
+    ExpInt(10),
+    ExpInt(5)),
+  ExpSeq(
+    [List of Exps:
+      ExpOp(
+        PLUS,
+        ExpVar(
+          VarSimple(i)),
+            ExpInt(1)),
+          ExpSeq(
+            [List of Exps:
+             ])
+         ]))
+
+********** test21.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        nfactor,
+          [List of Fields:
+            n:int
+           ],
+          resultTy == null,
+          ExpIfElse(
+            ExpOp(
+              EQ,
+              ExpVar(
+                VarSimple(n)),
+                  ExpInt(0)),
+                ExpInt(1),
+                ExpOp(
+                  MUL,
+                  ExpVar(
+                    VarSimple(n)),
+                      ExpCall(
+                        nfactor,
+                        [List of Exps:
+                          ExpOp(
+                            MIN,
+                            ExpVar(
+                              VarSimple(n)),
+                                ExpInt(1))
+                             ])))
+                   ])
+               ],
+              ExpSeq(
+                [List of Exps:
+                  ExpCall(
+                    nfactor,
+                    [List of Exps:
+                      ExpInt(10)
+                     ])
+                 ]))
+
+********** test22.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(rec1,
+      ExpRecord(rectype,
+        [List of Record Fields:
+          (name:
+            ExpString(Name)),
+          (id:
+            ExpInt(0))
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpAssign(
+        VarField(
+          VarSimple(rec1),
+          nam),
+        ExpString(asd))
+     ]))
+
+********** test23.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(rec1,
+      ExpRecord(rectype,
+        [List of Record Fields:
+          (name:
+            ExpString(aname)),
+          (id:
+            ExpInt(0))
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpAssign(
+        VarField(
+          VarSimple(rec1),
+          name),
+        ExpInt(3)),
+      ExpAssign(
+        VarField(
+          VarSimple(rec1),
+          id),
+        ExpString())
+     ]))
+
+********** test24.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(d,
+      ExpInt(0))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSubscript(
+          VarSimple(d),
+          ExpInt(3)))
+         ]))
+
+********** test25.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(d,
+      ExpInt(0))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarField(
+          VarSimple(d),
+          f))
+         ]))
+
+********** test26.absyn *****************
+
+ExpOp(
+  PLUS,
+  ExpInt(3),
+  ExpString(var))
+
+********** test27.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(a,
+      ExpInt(0)),
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int
+           ],
+          int,
+          ExpVar(
+            VarSimple(a))
+           ])
+       ],
+      ExpSeq(
+        [List of Exps:
+          ExpCall(
+            g,
+            [List of Exps:
+              ExpInt(2)
+             ])
+         ]))
+
+********** test28.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype1,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ]),
+          rectype2,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(rec1,
+      rectype1,
+      ExpRecord(rectype2,
+        [List of Record Fields:
+          (name:
+            ExpString(Name)),
+          (id:
+            ExpInt(0))
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(rec1))
+         ]))
+
+********** test29.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          arrtype1,
+          TyArray(int),
+          arrtype2,
+          TyArray(int)
+      ]),
+    DeclVar(arr1,
+      arrtype1,
+      ArrayExp(
+        arrtype2,
+        ExpInt(10),
+        ExpInt(0)))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(arr1))
+         ]))
+
+********** test30.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          a,
+          TyArray(int),
+          b,
+          TyName(a)
+      ]),
+    DeclVar(arr1,
+      a,
+      ArrayExp(
+        b,
+        ExpInt(10),
+        ExpInt(0)))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSubscript(
+          VarSimple(arr1),
+          ExpInt(2)))
+         ]))
+
+********** test31.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(a,
+      int,
+      ExpString( ))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(a))
+         ]))
+
+********** test32.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          arrayty,
+          TyArray(int)
+      ]),
+    DeclVar(a,
+      ArrayExp(
+        arrayty,
+        ExpInt(10),
+        ExpString( )))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpInt(0)
+     ]))
+
+********** test33.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(a,
+      ExpRecord(rectype,
+        [List of Record Fields:
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpInt(0)
+     ]))
+
+********** test34.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          int,
+          ExpVar(
+            VarSimple(a))
+           ])
+       ],
+      ExpSeq(
+        [List of Exps:
+          ExpCall(
+            g,
+            [List of Exps:
+              ExpString(one),
+              ExpString(two)
+             ])
+         ]))
+
+********** test35.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          int,
+          ExpVar(
+            VarSimple(a))
+           ])
+       ],
+      ExpSeq(
+        [List of Exps:
+          ExpCall(
+            g,
+            [List of Exps:
+              ExpString(one)
+             ])
+         ]))
+
+********** test36.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int,
+            b:string
+           ],
+          int,
+          ExpVar(
+            VarSimple(a))
+           ])
+       ],
+      ExpSeq(
+        [List of Exps:
+          ExpCall(
+            g,
+            [List of Exps:
+              ExpInt(3),
+              ExpString(one),
+              ExpInt(5)
+             ])
+         ]))
+
+********** test37.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(a,
+      ExpInt(0)),
+    DeclVar(a,
+      ExpString( ))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpInt(0)
+     ]))
+
+********** test38.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          a,
+          TyName(int),
+          a,
+          TyName(string)
+      ])
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpInt(0)
+     ]))
+
+********** test39.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int
+           ],
+          int,
+          ExpVar(
+            VarSimple(a)),
+            g,
+              [List of Fields:
+                a:int
+               ],
+              int,
+              ExpVar(
+                VarSimple(a))
+               ])
+           ],
+          ExpSeq(
+            [List of Exps:
+              ExpInt(0)
+             ]))
+
+********** test40.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int
+           ],
+          resultTy == null,
+          ExpVar(
+            VarSimple(a))
+           ])
+       ],
+      ExpSeq(
+        [List of Exps:
+          ExpCall(
+            g,
+            [List of Exps:
+              ExpInt(2)
+             ])
+         ]))
+
+********** test41.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          a,
+          TyName(int)
+      ])
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpLet(
+        [List of Decls:
+          DeclGroupType(
+            [List of Type Decls:
+                a,
+                TyName(string)
+            ])
+         ],
+        ExpSeq(
+          [List of Exps:
+            ExpInt(0)
+           ]))
+     ]))
+
+********** test42.absyn *****************
+
+../test/testcases/test42.tig::21.13: Syntax error (7)
+Couldn't repair and continue parse at character 576 of input
+java.lang.Exception: Can't recover from previous error(s)
+	at java_cup.runtime.lr_parser.report_fatal_error(lr_parser.java:375)
+	at java_cup.runtime.lr_parser.unrecovered_syntax_error(lr_parser.java:424)
+	at java_cup.runtime.lr_parser.parse(lr_parser.java:616)
+	at test.TestParser.main(Unknown Source)
+Exception in thread "main" java.lang.Error: java.lang.Exception: Can't recover from previous error(s)
+	at test.TestParser.main(Unknown Source)
+
+********** test43.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclVar(a,
+      ExpSeq(
+        [List of Exps:
+         ]))
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpOp(
+        PLUS,
+        ExpVar(
+          VarSimple(a)),
+            ExpInt(3))
+         ]))
+
+********** test44.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(b,
+      rectype,
+      ExpNil())
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpAssign(
+        VarSimple(b),
+        ExpNil())
+     ]))
+
+********** test45.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(a,
+      ExpNil())
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpVar(
+        VarSimple(a))
+         ]))
+
+********** test46.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          rectype,
+          TyRecord(
+            [List of Fields:
+              name:string,
+              id:int
+             ])
+      ]),
+    DeclVar(b,
+      rectype,
+      ExpNil())
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpOp(
+        EQ,
+        ExpVar(
+          VarSimple(b)),
+            ExpNil()),
+          ExpOp(
+            NE,
+            ExpVar(
+              VarSimple(b)),
+                ExpNil())
+             ]))
+
+********** test47.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupType(
+      [List of Type Decls:
+          a,
+          TyName(int)
+      ]),
+    DeclVar(b,
+      ExpInt(4)),
+    DeclGroupType(
+      [List of Type Decls:
+          a,
+          TyName(string)
+      ])
+   ],
+  ExpSeq(
+    [List of Exps:
+      ExpInt(0)
+     ]))
+
+********** test48.absyn *****************
+
+ExpLet(
+  [List of Decls:
+    DeclGroupFunction(
+      [List of Function Decls:
+        g,
+          [List of Fields:
+            a:int
+           ],
+          int,
+          ExpVar(
+            VarSimple(a))
+           ]),
+        DeclGroupType(
+          [List of Type Decls:
+              t,
+              TyName(int)
+          ]),
+        DeclGroupFunction(
+          [List of Function Decls:
+            g,
+              [List of Fields:
+                a:int
+               ],
+              int,
+              ExpVar(
+                VarSimple(a))
+               ])
+           ],
+          ExpSeq(
+            [List of Exps:
+              ExpInt(0)
+             ]))
+
+********** test49.absyn *****************
+
+../test/testcases/test49.tig::5.18: Syntax error (41)
+Couldn't repair and continue parse at character 128 of input
+java.lang.Exception: Can't recover from previous error(s)
+	at java_cup.runtime.lr_parser.report_fatal_error(lr_parser.java:375)
+	at java_cup.runtime.lr_parser.unrecovered_syntax_error(lr_parser.java:424)
+	at java_cup.runtime.lr_parser.parse(lr_parser.java:616)
+	at test.TestParser.main(Unknown Source)
+Exception in thread "main" java.lang.Error: java.lang.Exception: Can't recover from previous error(s)
+	at test.TestParser.main(Unknown Source)
+

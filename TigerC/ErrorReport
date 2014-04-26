@@ -1,0 +1,43 @@
+
+The only thing left to do is to refactor the array declaration production
+so that it it causes no conflict. The remaining three conflicts should be
+resolved by means of shifting. 
+
+
+
+
+
+
+
+ Warning : Non terminal "lval_not_id" was declared but never used
+      [cup] Warning : *** Shift/Reduce conflict found in state #44
+      [cup]   between one_or_more_ty_decls ::= decl_ty (*) 
+      [cup]   and     decl_ty ::= (*) TYPE ID EQ type 
+      [cup]   under symbol TYPE
+      [cup]   Resolved in favor of shifting.
+      [cup] Warning : *** Shift/Reduce conflict found in state #116
+      [cup]   between exp ::= IF exp THEN exp (*) 
+      [cup]   and     exp ::= IF exp THEN exp (*) ELSE exp 
+      [cup]   under symbol ELSE
+      [cup]   Resolved in favor of shifting.
+      [cup] Warning : *** Shift/Reduce conflict found in state #10
+      [cup]   between lvalue ::= ID (*) 
+      [cup]   and     exp ::= ID (*) LBRACK exp RBRACK OF exp 
+      [cup]   under symbol LBRACK
+      [cup]   Resolved in favor of shifting.
+      [cup] Warning : *** Shift/Reduce conflict found in state #49
+      [cup]   between one_or_more_fn_decls ::= decl_fn (*) 
+      [cup]   and     decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN EQ exp 
+      [cup]   and     decl_fn ::= (*) FUNCTION ID LPAREN tyfield_list RPAREN COLON ID EQ exp 
+      [cup]   under symbol FUNCTION
+      [cup]   Resolved in favor of shifting.
+      [cup] ------- CUP v0.11a beta 20060608 Parser Generation Summary -------
+      [cup]   0 errors and 5 warnings
+      [cup]   46 terminals, 23 non-terminals, and 69 productions declared, 
+      [cup]   producing 131 unique parse states.
+      [cup]   1 terminal declared but not used.
+      [cup]   0 non-terminal declared but not used.
+      [cup]   0 productions never reduced.
+      [cup]   4 conflicts detected (10 expected).
+      [cup]   Code written to "TigerParse.java", and "TigerSyms.java".
+      [cup] ---------------------------------------------------- (v0.11a beta 20060608)

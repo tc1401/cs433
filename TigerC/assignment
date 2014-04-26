@@ -1,0 +1,79 @@
+ToDo:Parse a subset of the Tiger language
+	Expressions: (capital things are nonterminals)
+		E -> int_const | str_const | nil 
+			| E BinOp E | Lval := E 
+			| while E do E | let Decl in ESeq end
+			| (ESeq) 
+			
+	in other words: constants, binoperators, assignments, 
+					sequences, and let 
+					
+		Op   -> + | - | * | / | < | > | ... 
+		LVal -> id
+		ESeq -> E | ESeq;E
+		Decl -> var id := E
+	
+					
+	for fun, and a bonus:
+		if and if/else
+		
+		
+Your job: 
+	A completion of TigerParseRD.java :) 
+	Minimal infrastructure is available.
+	
+	>Implement E() and all necessary helper methods
+	>produce a grammar for the Tiger subset suitable 
+	  for RD parsing
+	
+	
+Examples:
+1	A boolean match (symbol x, symbol y){return x==y;}
+2	A boolean function for each rule in P:
+	private boolean R(){ ... } //returns true if we 
+								can match the token 
+								stream for the rule R
+3	A boolean function for each non-terminal, which returns
+	true if we can match that non-terminal. Maybe we should 
+	implement the longest rule first thing. 
+	
+Ex:{ E > T+E|T
+	T > n|n*T|(E)
+	//E > E1|E2
+	//T > T1|T2|T3
+class RDParser{
+	Lexer lex = ...;
+		//assume two methods
+		//next() : returns and consumes the next token
+		//peek() : returns next token, but no effect on the stream. 
+		//need a match defined on the terminals
+		//need methods for:
+			boolean E1(){}
+			boolean E2(){}
+			boolean T1(){}
+			boolean T2(){}
+			boolean T3(){}
+			
+		// need methods for each NonTerminal
+			boolean E(){}
+			boolean T(){}
+			
+ 
+ Implementing rules: 
+ 	> either match a terminal, or recursively call a method for a nonterminal .
+ 	boolean T1(){
+ 		Symbol next = lex.peek();
+ 		if(match(INT, next)){
+ 			lex.next_token();
+ 			return true;
+ 		}
+ 		return false; 
+ 		
+ 	}
+}
+
+>We're writing an LL(1) parser. 
+>LL(k) parsers are reading left to right, leftmost derivation with k token lookahead.
+>At each token, determine the choice of (leftmost) derivation
+ 
+ 	

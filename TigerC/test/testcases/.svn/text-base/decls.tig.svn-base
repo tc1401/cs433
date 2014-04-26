@@ -1,0 +1,15 @@
+let
+    type R1 =  { a : int, b : R2 }
+    type R2 = { c : R1, d : R2}
+    
+    var x:R1 := R1 { a=42, b=nil }
+    
+    type iArray = array of int
+    var A := iArray[10] of 0
+    
+    function f(t:R1) : int =
+        1
+    function g(L: R2) =
+        L := nil
+in  42
+end

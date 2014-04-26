@@ -1,0 +1,8 @@
+/* Should be:
+
+  ExpOp(OR,
+        ExpOp(EQ, ExpInt(5), ExpInt(3)),
+        ExpOp(NE, ExpInt(5), ExpInt(3)))
+*/
+
+5=3 | 5<>3

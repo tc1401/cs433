@@ -1,0 +1,241 @@
+
+<!--
+build.xml file for tigerc project, a compiler for Andrew Appel's Tiger language.  
+
+Written by John Lasseter 
+           (jlasseter@fairfield.edu or johnfl@acm.org)
+Created:  09/28/2011
+Modified: 09/29/2011
+          10/31/2011  (added testParser task)
+          01/31/2014  (modified jflex to support jflex-1.5.0)
+          02/12/2014  (modified to reflect refactoring of tigerc.syntax.util ==> tigerc.util)
+          02/23/2014   (added testRDParser task)
+-->
+
+
+<project name="tigerc" default="compile" basedir=".">
+	<description>
+        Compiler for the Tiger programming language, designed by A. Appel
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src_root" location="${basedir}/src" />
+	<property name="bin" location="${basedir}/bin" />
+	<property name="dist" location="${basedir}/dist" />
+	<property name="cup_dir" location="${basedir}/lib" />
+	<property name="jflex_dir" location="${basedir}/lib" />
+	<property name="jarfile" location="${basedir}/${dist}/${ant.project.name}.jar" />
+	<property name="main_class" value="TigerC" />
+	
+	<path id="base.path">
+		<pathelement path="${classpath}" />
+		<fileset dir="${basedir}/lib">
+			<include name="**/*.jar" />
+		</fileset>
+		<pathelement location="${bin}"/>
+	</path>
+
+
+	<path id="cupclasspath">
+		<pathelement location="${cup_dir}/java-cup-11a.jar" />
+		<!--
+        <pathelement location="${bin}"/>
+        <pathelement location="${bin}/test"/>
+-->
+	</path>
+
+	<taskdef name="cup" classpathref="cupclasspath" classname="java_cup.anttask.CUPTask" />
+
+	<taskdef name="jflex" classpath="${jflex_dir}/jflex-1.5.0.jar" classname="jflex.anttask.JFlexTask" />
+
+	<target name="init">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${bin}" />
+	</target>
+
+	<target name="genLex" depends="init" description="Generate the lexer">
+		<jflex file="${src_root}/tigerc/syntax/parse/Tiger.flex" destdir="${src_root}/" verbose="true" />
+	</target>
+
+
+	<target name="genParse" depends="init" description="Generate the parser">
+		<cup srcfile="${src_root}/tigerc/syntax/parse/Tiger.cup" 
+			destdir="${src_root}/" 
+			interface="true" 
+			package="syntax.parse" 
+			parser="TigerParse" 
+			symbols="TigerSyms"  
+		    expect="4"/>
+		<!-- If you have a shift/reduce conflict, you may need to modify the attribute
+            expect="??"
+        -->
+	</target>
+
+	<target name="compile" depends="init,genLex,genParse" description="Compile code">
+		<javac srcdir="${src_root}" destdir="${bin}" includeAntRuntime="no">
+			<classpath>
+				<path refid="base.path" />
+				<path refid="cupclasspath" />
+			</classpath>
+			<include name="tigerc/syntax/absyn/*.java" />
+            <include name="tigerc/util/*.java" />
+            <include name="tigerc/codegen/*.java" />
+		    <include name="tigerc/codegen/types/*.java" />
+		</javac>
+	</target>
+
+	<target name="testLexer" depends="init,genLex" description="Compile and run test file for TigerLex">
+		<javac srcdir="${src_root}" destdir="${bin}" includeAntRuntime="no">
+			<include name="tigerc/syntax/parse/*.java" />
+			<include name="tigerc/util/ErrorMsg.java" />
+			<classpath>
+				<path refid="base.path" />
+				<path refid="cupclasspath" />
+			</classpath>
+		</javac>
+		<javac srcdir="${basedir}" destdir="${bin}" includeAntRuntime="no">
+			<include name="test/TestLexer.java" />
+			<classpath>
+				<path refid="base.path" />
+				<pathelement path="${src_root}"/>
+			</classpath>
+		</javac>
+		<input 
+			message="Tiger file for tokenization:  " 
+		    addproperty="tiger_src"
+		/>
+		<java classname="test.TestLexer"  fork="yes" failonerror="true">
+			<classpath>
+				<path refid="base.path" />
+				<path refid="cupclasspath" />
+			</classpath>
+			<arg value="${basedir}/test/testcases/${tiger_src}"/>
+		</java>
+	</target>
+
+    <target name="testParser" depends="init,genLex,genParse" description="Compile and run test file for TigerParse">
+        <javac srcdir="${src_root}" destdir="${bin}" includeAntRuntime="no">
+            <include name="tigerc/syntax/parse/*.java" />
+            <include name="tigerc/util/*.java" />
+            <classpath>
+                <path refid="base.path" />
+                <path refid="cupclasspath" />
+            </classpath>
+        </javac>
+        <javac srcdir="${basedir}" destdir="${bin}" includeAntRuntime="no">
+            <include name="test/TestParser.java" />
+            <classpath>
+                <path refid="base.path" />
+                <pathelement path="${src_root}"/>
+            </classpath>
+        </javac>
+        <input 
+            message="Tiger file for parsing:  " 
+            addproperty="tiger_src"
+        />
+        <java classname="TestParser"  fork="yes" failonerror="true">
+            <classpath>
+                <path refid="base.path" />
+                <path refid="cupclasspath" />
+            </classpath>
+            <arg value="${basedir}/test/testcases/${tiger_src}"/>
+        </java>
+    </target>
+
+    <target name="testRDParser" depends="init,genLex" description="Compile and run test file for TigerRDParse">
+        <javac srcdir="${src_root}" destdir="${bin}" includeAntRuntime="no">
+            <include name="tigerc/syntax/parse/*.java" />
+            <include name="tigerc/util/*.java" />
+            <classpath>
+                <path refid="base.path" />
+                <path refid="cupclasspath" />
+            </classpath>
+        </javac>
+        <javac srcdir="${basedir}" destdir="${bin}" includeAntRuntime="no">
+            <include name="test/TestRDParser.java" />
+            <classpath>
+                <path refid="base.path" />
+                <pathelement path="${src_root}"/>
+            </classpath>
+        </javac>
+        <input 
+            message="Tiger file for parsing:  " 
+            addproperty="tiger_src"
+        />
+        <java classname="TestRDParser"  fork="yes" failonerror="true">
+            <classpath>
+                <path refid="base.path" />
+                <path refid="cupclasspath" />
+            </classpath>
+            <arg value="${basedir}/test/testcases/${tiger_src}"/>
+        </java>
+    </target>
+
+	
+    <target name="testSemant" depends="init,genLex,genParse" description="Compile and run test file for TigerParse">
+        <javac srcdir="${src_root}" destdir="${bin}" includeAntRuntime="no">
+            <include name="tigerc/syntax/parse/*.java" />
+            <include name="tigerc/util/*.java" />
+            <include name="tigerc/semant/*.java" />
+            <classpath>
+                <path refid="base.path" />
+                <path refid="cupclasspath" />
+            </classpath>
+        </javac>
+        <javac srcdir="${basedir}/test" destdir="${bin}" includeAntRuntime="no">
+            <include name="TestSemant.java" />
+            <classpath>
+                <path refid="base.path" />
+                <pathelement path="${src_root}"/>
+            </classpath>
+        </javac>
+        <input 
+            message="Tiger file for parsing &amp; analysis:  " 
+            addproperty="tiger_src"
+        />
+        <java classname="TestSemant"  fork="yes" failonerror="true">
+            <classpath>
+                <path refid="base.path" />
+                <path refid="cupclasspath" />
+            </classpath>
+            <arg value="${basedir}/test/testcases/${tiger_src}"/>
+        </java>
+    </target>
+
+	<target name="dist" depends="compile" description="Build jar">
+		<mkdir dir="${dist}" />
+		<jar jarfile="${jarfile}" basedir="${bin}" manifest="Manifest">
+			<!-- Merge library jars into final jar file -->
+			<zipgroupfileset refid="lib.jars" />
+			<classpath refid="${basedir}/src" />
+			<manifest>
+				<attribute name="Main-Class" value="${main_class}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="dist" description="Run jar file">
+		<java jar="${jarfile}" fork="yes" failonerror="true">
+			<classpath refid="cupclasspath" />
+		</java>
+	</target>
+
+	<target name="clean" description="Remove generated src files, build and dist directories">
+		<delete file="${src_root}/tigerc/syntax/parse/TigerLex.java" />
+		<delete file="${src_root}/tigerc/syntax/parse/TigerParse.java" />
+		<delete file="${src_root}/tigerc/syntax/parse/TigerSyms.java" />
+		<delete>
+			<fileset dir="${src_root}/tigerc/">
+				<include name="**/*.class"/>
+			</fileset>
+			<fileset dir="${basedir}/test">
+				<include name="**/*.class"/>
+			</fileset>
+		</delete>
+		<delete dir="${bin}" />
+		<delete dir="${dist}" />
+	</target>
+	
+	
+	
+
+</project>

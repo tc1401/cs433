@@ -1,0 +1,8 @@
+let 
+
+ type any = {any : int}
+ var buffer:string := getchar()
+
+ in buffer
+end
+
